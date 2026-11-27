@@ -1,6 +1,6 @@
 # API de Tarefas
 
-**Aluno(a):** _(preencher)_
+**Aluno(a):** Sophia Basaglia Carneiro
 
 API de gestão de tarefas feita com Node.js, Express e MySQL, no padrão MVC.
 
@@ -28,7 +28,7 @@ _(Sprint 2: uma linha para cada rota da API)_
 
 # Acompanhamento do projeto
 
-**Quadro usado:** _(preencher: GitHub Projects ou Trello)_
+**Quadro usado:** _(GitHub Projects)_
 
 ## Sprint 1 — Tarefas
 
@@ -56,6 +56,6 @@ _(Sprint 2: uma linha para cada rota da API)_
 
 ## Reflexão final
 
-- **O que aprendi:** _(preencher)_
+- **O que aprendi:** _(Aprendi maneiras para me organizar melhor durante o processo de construção do código)_
 - **O que foi mais difícil:** _(preencher)_
 - **O que eu faria diferente:** _(preencher)_
