@@ -35,12 +35,17 @@ async function atualizarTarefa(id, dados) {
 }
 
 async function atualizarParcialTarefa(id, dados) {
-const tarefa = await buscarTarefaPorId(id);
-if (!tarefa) return null;
-if (dados.titulo !== undefined) tarefa.titulo = dados.titulo;
-if (dados.prioridade !== undefined) tarefa.prioridade = dados.prioridade;
-if (dados.status !== undefined) tarefa.status = dados.status;
-return await atualizarTarefa(id, tarefa);
+  const tarefa = await buscarTarefaPorId(id);
+  if (!tarefa) return null;
+  if (dados.titulo !== undefined) tarefa.titulo = dados.titulo;
+  if (dados.prioridade !== undefined) tarefa.prioridade = dados.prioridade;
+  if (dados.status !== undefined) tarefa.status = dados.status;
+  return await atualizarTarefa(id, tarefa);
+}
+
+async function deletarTarefa(id) {
+  const [resultado] = await db.query("DELETE FROM tarefas WHERE id = ?", [id]);
+  return resultado.affectedRows > 0;
 }
 
 module.exports = {
@@ -48,5 +53,6 @@ module.exports = {
   buscarTarefaPorId,
   criarTarefa,
   atualizarTarefa,
-  atualizarParcialTarefa
+  atualizarParcialTarefa,
+  deletarTarefa,
 };

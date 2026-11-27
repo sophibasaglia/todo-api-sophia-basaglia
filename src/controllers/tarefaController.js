@@ -33,7 +33,10 @@ async function atualizar(req, res) {
 
 async function atualizarParcial(req, res) {
   const id = req.params.id;
-  const tarefaAtualizada = await tarefaService.atualizarParcialTarefa(id, req.body);
+  const tarefaAtualizada = await tarefaService.atualizarParcialTarefa(
+    id,
+    req.body,
+  );
 
   if (!tarefaAtualizada) {
     return res.status(404).json({ erro: "Tarefa nao encontrada" });
@@ -41,6 +44,15 @@ async function atualizarParcial(req, res) {
   return res.status(200).json(tarefaAtualizada);
 }
 
+async function deletar(req, res) {
+  const id = req.params.id;
+  const apagado = await tarefaService.deletarTarefa(id);
+
+  if (!apagado) {
+    return res.status(404).json({ erro: "Tarefa nao encontrada" });
+  }
+  return res.status(204).send();
+}
 
 module.exports = {
   listar,
@@ -48,4 +60,5 @@ module.exports = {
   criar,
   atualizar,
   atualizarParcial,
+  deletar
 };
