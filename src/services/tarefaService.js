@@ -18,11 +18,35 @@ async function buscarTarefaPorId(id) {
 }
 
 async function criarTarefa(dados) {
-const [resultado] = await db.query(
-"INSERT INTO tarefas (titulo, prioridade, status) VALUES (?, ?, ?)",
-[dados.titulo, dados.prioridade, dados.status],
-);
-return await buscarTarefaPorId(resultado.insertId);
+  const [resultado] = await db.query(
+    "INSERT INTO tarefas (titulo, prioridade, status) VALUES (?, ?, ?)",
+    [dados.titulo, dados.prioridade, dados.status],
+  );
+  return await buscarTarefaPorId(resultado.insertId);
 }
 
-module.exports = {listarTarefas, buscarTarefaPorId, criarTarefa};
+async function atualizarTarefa(id, dados) {
+  const [resultado] = await db.query(
+    "UPDATE tarefas SET titulo = ?, prioridade = ?, status = ? WHERE id = ?",
+    [dados.titulo, dados.prioridade, dados.status, id],
+  );
+  if (resultado.affectedRows === 0) return null;
+  return await buscarTarefaPorId(id);
+}
+
+async function atualizarParcialTarefa(id, dados) {
+const tarefa = await buscarTarefaPorId(id);
+if (!tarefa) return null;
+if (dados.titulo !== undefined) tarefa.titulo = dados.titulo;
+if (dados.prioridade !== undefined) tarefa.prioridade = dados.prioridade;
+if (dados.status !== undefined) tarefa.status = dados.status;
+return await atualizarTarefa(id, tarefa);
+}
+
+module.exports = {
+  listarTarefas,
+  buscarTarefaPorId,
+  criarTarefa,
+  atualizarTarefa,
+  atualizarParcialTarefa
+};
