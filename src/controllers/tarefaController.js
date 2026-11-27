@@ -27,7 +27,7 @@ async function criar(req, res) {
 }
 
 async function atualizar(req, res) {
-  const erro = tarefaService.validarTarefa(req.body, true);
+  const erro = tarefaService.atualizarTarefa(req.body, true);
   if (erro) {
     res.status(400).json({ erro: erro });
     return;
@@ -42,7 +42,7 @@ async function atualizar(req, res) {
 }
 
 async function atualizarParcial(req, res) {
-  const erro = tarefaService.validarTarefa(req.body, false);
+  const erro = tarefaService.atualizarTarefa(req.body, false);
   if (erro) {
     res.status(400).json({ erro: erro });
     return;
