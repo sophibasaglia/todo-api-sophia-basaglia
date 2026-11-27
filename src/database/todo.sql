@@ -15,6 +15,6 @@ status VARCHAR(10) NOT NULL
 INSERT INTO tarefas (titulo, prioridade, status) VALUES
 ('Estudar para a prova de PBE', 'alta', 'fazendo'),
 ('Lavar a louça', 'media', 'feita'),
-('Arrumar o quarto', 'baixa', 'a fazer');
+('Arrumar o quarto', 'baixa', 'a_fazer');
 
 SELECT * FROM tarefas;

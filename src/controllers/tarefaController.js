@@ -17,11 +17,21 @@ async function buscarPorId(req, res) {
 }
 
 async function criar(req, res) {
+  const erro = tarefaService.validarTarefa(req.body, true);
+  if (erro) {
+    res.status(400).json({ erro: erro });
+    return;
+  }
   const novaTarefa = await tarefaService.criarTarefa(req.body);
   res.status(201).json(novaTarefa);
 }
 
 async function atualizar(req, res) {
+  const erro = tarefaService.validarTarefa(req.body, true);
+  if (erro) {
+    res.status(400).json({ erro: erro });
+    return;
+  }
   const id = req.params.id;
   const tarefaAtualizada = await tarefaService.atualizarTarefa(id, req.body);
 
@@ -32,6 +42,12 @@ async function atualizar(req, res) {
 }
 
 async function atualizarParcial(req, res) {
+  const erro = tarefaService.validarTarefa(req.body, false);
+  if (erro) {
+    res.status(400).json({ erro: erro });
+    return;
+  }
+
   const id = req.params.id;
   const tarefaAtualizada = await tarefaService.atualizarParcialTarefa(
     id,
@@ -60,5 +76,5 @@ module.exports = {
   criar,
   atualizar,
   atualizarParcial,
-  deletar
+  deletar,
 };
