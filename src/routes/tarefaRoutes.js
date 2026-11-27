@@ -7,5 +7,6 @@ const validarId = require("../middlewares/validarId");
 const router = express.Router();
 
 router.get("/", tarefaController.listar);
+router.get("/:id", validarId, tarefaController.buscarPorId);
 
 module.exports = router;
